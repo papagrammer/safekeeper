@@ -8,6 +8,9 @@
 \usepackage{biblatex}
 \usepackage{hyperref}
 \usepackage{tabularx}
+\usepackage[section]{placeins}
+
+\usepackage{rotating}
 
 \addbibresource{references.bib}
 
@@ -37,14 +40,10 @@
 \renewcommand{\contentsname}{Περιεχόμενα}
 \tableofcontents
 
-\clearpage
-\section{Χρονοπρογραμματισμός}
-\subsection{Gantt Chart}
-
-\begin{center}
- \makebox[\textwidth]{\includegraphics[width=.9\paperwidth]{gant.png}}
-\end{center}
-\subsection{Pert Chart}
+\section{Pert Chart - Gant Chart}
+\begin{sidewaysfigure}[!ht]
+ \makebox[\textwidth]{\includegraphics[width=1.2\paperwidth]{gant.png}}
+\end{sidewaysfigure}
 \begin{center}
  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{pert-1.png}}
 
@@ -95,7 +94,7 @@
 
 Οι 'μισθοί' του κάθε μέλους (ατομικά έξοδα δηλαδή) θα ανέρχονται στα 1000 ευρώ το μήνα καθαρά συν 200 ευρώ (1200 μεικτά). Θα χρησιμοπιήσουμε το μεγάλο σπίτι του Βάιου μέχρι να κάνουμε την πρώτη πώληση και να μεταφερθούμε σε γραφείο. Υπολογίζουμε πως τα μηνιαία έξοδα του σπιτιού είναι στα 1000 ευρώ μηνιαία συμπεριλαμβάνοντας τυχόν utilities, καφέδες και φαγητό. Τα δικηγορικά και λογιστικά έξοδα τα περιμένουμε να είναι γύρω στα 2000-3000 μέχρι και την πρώτη πώληση. Τα κόστη των server είναι στα 10 ευρώ το μήνα μέχρι να αποκτήσουμε αρκετό scale που θα ανεβεί ανάλογα με το traffic. Θα χρησιμοποιήσουμε κάποιο managed cloud όπως AWS/GCP/Azure για να μην έχουμε τέτοια προβλήματα με scaling. Έξτρα hardware που περιλαμβάνει 2 drones για testing και ένα development kit καρτών κοστίζουν συνολικά 2500 ευρώ.
 
-Άρα συνολικα, υπολογίζουμε το κόστος να είναι στα 7-9 χιλιάρικα (ελαφρώς αισιόδοξα πως θα έχουμε τελειώσει σε 6 μήνες).
+Άρα συνολικα, υπολογίζουμε το κόστος να είναι στα 7.000-9.000 ευρώ (ελαφρώς αισιόδοξα πως θα έχουμε τελειώσει σε 6 μήνες).
 
 Η τιμή πώλησης του κάθε project εξαρτάται από το μέγεθος και τις έξτρα απαιτήσεις (επιπλέον drones, κάρτες ή on-premises servers) του κάθε πελάτη.
 
