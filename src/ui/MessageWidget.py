@@ -11,6 +11,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MessageWidget(object):
+
+    def __init__(self, ctx):
+        self.ctx = ctx
+
     def setupUi(self, MessageWidget):
         MessageWidget.setObjectName("MessageWidget")
         MessageWidget.resize(273, 146)
@@ -32,12 +36,3 @@ class Ui_MessageWidget(object):
         self.OKButton.setText(_translate("MessageWidget", "OK"))
         self.MessageText.setText(_translate("MessageWidget", "Message Text"))
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MessageWidget = QtWidgets.QWidget()
-    ui = Ui_MessageWidget()
-    ui.setupUi(MessageWidget)
-    MessageWidget.show()
-    sys.exit(app.exec_())

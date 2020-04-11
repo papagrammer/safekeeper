@@ -11,6 +11,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_DeleteUserWidget(object):
+
+    def __init__(self, ctx):
+        self.ctx = ctx
+
     def setupUi(self, DeleteUserWidget):
         DeleteUserWidget.setObjectName("DeleteUserWidget")
         DeleteUserWidget.resize(289, 231)
@@ -82,12 +86,3 @@ class Ui_DeleteUserWidget(object):
         self.RFIDCodeText.setText(_translate("DeleteUserWidget", "RFID Code"))
         self.CancelButton.setText(_translate("DeleteUserWidget", "Cancel"))
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    DeleteUserWidget = QtWidgets.QDialog()
-    ui = Ui_DeleteUserWidget()
-    ui.setupUi(DeleteUserWidget)
-    DeleteUserWidget.show()
-    sys.exit(app.exec_())

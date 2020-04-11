@@ -11,6 +11,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_ActivityLogWindow(object):
+
+    def __init__(self, ctx):
+        self.ctx = ctx
+
     def setupUi(self, ActivityLogWindow):
         ActivityLogWindow.setObjectName("ActivityLogWindow")
         ActivityLogWindow.resize(655, 228)
@@ -104,13 +108,3 @@ class Ui_ActivityLogWindow(object):
         self.actionDate.setText(_translate("ActivityLogWindow", "Date"))
         self.actionType.setText(_translate("ActivityLogWindow", "Type"))
         self.actionLevel.setText(_translate("ActivityLogWindow", "Level"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    ActivityLogWindow = QtWidgets.QMainWindow()
-    ui = Ui_ActivityLogWindow()
-    ui.setupUi(ActivityLogWindow)
-    ActivityLogWindow.show()
-    sys.exit(app.exec_())

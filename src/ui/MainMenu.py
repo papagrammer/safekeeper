@@ -8,9 +8,53 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from .ActivityLogWindow import Ui_ActivityLogWindow
+from .DeleteUserWidget import Ui_DeleteUserWidget
+from .DroneWindow import Ui_DroneWindow
+from .InsertUserWidget import Ui_InsertUserWidget
+from .SilentAlarmWidget import Ui_SilentAlarmWidget
+from .IncidentReport import Ui_IncidentReportWindow
 
 class Ui_MainMenuWindow(object):
+    def __init__(self, ctx):
+        self.ctx = ctx
+
+    def _activity_log_clicked(self):
+        self.ActivityLogWindow = QtWidgets.QMainWindow()
+        self.ui_activity_log = Ui_ActivityLogWindow(self.ctx)
+        self.ui_activity_log.setupUi(self.ActivityLogWindow)
+        self.ActivityLogWindow.show()
+
+    def _delete_button_clicked(self):
+        self.DeleteUserWindow = QtWidgets.QMainWindow()
+        self.ui_delete_window = Ui_DeleteUserWidget(self.ctx)
+        self.ui_delete_window.setupUi(self.DeleteUserWindow)
+        self.DeleteUserWindow.show()
+
+    def _drone_button_clicked(self):
+        self.DroneControlWindow = QtWidgets.QMainWindow()
+        self.ui_drone_control = Ui_DroneWindow(self.ctx)
+        self.ui_drone_control.setupUi(self.DroneControlWindow)
+        self.DroneControlWindow.show()
+
+    def _incident_submission_clicked(self):
+        self.IncidentSubmissionWindow = QtWidgets.QMainWindow()
+        self.ui_report = Ui_IncidentReportWindow(self.ctx)
+        self.ui_report.setupUi(self.IncidentSubmissionWindow)
+        self.IncidentSubmissionWindow.show()
+
+    def _insert_button_clicked(self):
+        self.InsertButtonWindow = QtWidgets.QMainWindow()
+        self.ui_insert = Ui_InsertUserWidget(self.ctx)
+        self.ui_insert.setupUi(self.InsertButtonWindow)
+        self.InsertButtonWindow.show()
+
+    def _silent_alarm_clicked(self):
+        self.SilentAlarmWindow = QtWidgets.QMainWindow()
+        self.ui_alarm = Ui_SilentAlarmWidget(self.ctx)
+        self.ui_alarm.setupUi(self.SilentAlarmWindow)
+        self.SilentAlarmWindow.show()
+
     def setupUi(self, MainMenuWindow):
         MainMenuWindow.setObjectName("MainMenuWindow")
         MainMenuWindow.resize(424, 254)
@@ -47,10 +91,19 @@ class Ui_MainMenuWindow(object):
         self.IncidentNumberText.setObjectName("IncidentNumberText")
         MainMenuWindow.setCentralWidget(self.centralwidget)
 
+        ## Click Listeners
+        self.ActivityLogButton.clicked.connect(self._activity_log_clicked)
+        self.DeleteUserButton.clicked.connect(self._delete_button_clicked)
+        self.DroneControlButton.clicked.connect(self._drone_button_clicked)
+        self.IncidentSubmissionButton.clicked.connect(self._incident_submission_clicked)
+        self.InsertUserButton.clicked.connect(self._insert_button_clicked)
+        self.SilentAlarmButton.clicked.connect(self._silent_alarm_clicked)
+
         self.retranslateUi(MainMenuWindow)
         QtCore.QMetaObject.connectSlotsByName(MainMenuWindow)
 
     def retranslateUi(self, MainMenuWindow):
+        self.MainMenuWindow = MainMenuWindow
         _translate = QtCore.QCoreApplication.translate
         MainMenuWindow.setWindowTitle(_translate("MainMenuWindow", "Safeguard"))
         self.ActivityLogButton.setText(_translate("MainMenuWindow", "Activity Log"))
@@ -66,13 +119,3 @@ class Ui_MainMenuWindow(object):
         self.listWidget.setSortingEnabled(__sortingEnabled)
         self.LatestIncidentsText.setText(_translate("MainMenuWindow", "Latest Incidents:"))
         self.IncidentNumberText.setText(_translate("MainMenuWindow", "# Incidents"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainMenuWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainMenuWindow()
-    ui.setupUi(MainMenuWindow)
-    MainMenuWindow.show()
-    sys.exit(app.exec_())

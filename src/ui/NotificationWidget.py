@@ -11,6 +11,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_NotificationWidget(object):
+
+    def __init__(self, ctx):
+        self.ctx = ctx
+
     def setupUi(self, NotificationWidget):
         NotificationWidget.setObjectName("NotificationWidget")
         NotificationWidget.resize(276, 167)
@@ -42,13 +46,3 @@ class Ui_NotificationWidget(object):
         self.NotificationText.setText(_translate("NotificationWidget", "Notification Text"))
         self.NotificationTimestamp.setText(_translate("NotificationWidget", "DD/MM/YYYY HH:MM"))
         self.NotificationType.setText(_translate("NotificationWidget", "Type"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    NotificationWidget = QtWidgets.QWidget()
-    ui = Ui_NotificationWidget()
-    ui.setupUi(NotificationWidget)
-    NotificationWidget.show()
-    sys.exit(app.exec_())

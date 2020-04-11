@@ -8,10 +8,26 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from .pin_util import pin_authorization
 
 class Ui_SilentAlarmWidget(object):
+
+    def __init__(self, ctx):
+        self.ctx = ctx
+
+    def _ok_click(self):
+        pin_authorization(self.ctx, self.__on_pin_auth)
+
+    def __on_pin_auth(self, result):
+        print(f'Pin Auth for Silent Alarm: {result}')
+        
+        if result:
+            print('Notifying central office')
+        
+        self.__window.close()
+
     def setupUi(self, SilentAlarmWidget):
+        self.__window = SilentAlarmWidget
         SilentAlarmWidget.setObjectName("SilentAlarmWidget")
         SilentAlarmWidget.resize(209, 120)
         self.label = QtWidgets.QLabel(SilentAlarmWidget)
@@ -27,6 +43,9 @@ class Ui_SilentAlarmWidget(object):
         self.CancelButton.setGeometry(QtCore.QRect(30, 90, 80, 23))
         self.CancelButton.setObjectName("CancelButton")
 
+        # click listeners
+        self.OKButton.clicked.connect(self._ok_click)
+
         self.retranslateUi(SilentAlarmWidget)
         QtCore.QMetaObject.connectSlotsByName(SilentAlarmWidget)
 
@@ -36,13 +55,3 @@ class Ui_SilentAlarmWidget(object):
         self.label.setText(_translate("SilentAlarmWidget", "Description:"))
         self.OKButton.setText(_translate("SilentAlarmWidget", "Alarm"))
         self.CancelButton.setText(_translate("SilentAlarmWidget", "Cancel"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    SilentAlarmWidget = QtWidgets.QWidget()
-    ui = Ui_SilentAlarmWidget()
-    ui.setupUi(SilentAlarmWidget)
-    SilentAlarmWidget.show()
-    sys.exit(app.exec_())

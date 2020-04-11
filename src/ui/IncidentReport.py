@@ -11,6 +11,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_IncidentReportWindow(object):
+
+    def __init__(self, ctx):
+        self.ctx = ctx
+
     def setupUi(self, IncidentReportWindow):
         IncidentReportWindow.setObjectName("IncidentReportWindow")
         IncidentReportWindow.resize(457, 177)
@@ -49,13 +53,3 @@ class Ui_IncidentReportWindow(object):
         self.TimestampText.setText(_translate("IncidentReportWindow", "Incident Time: DD/MM/YY HH:MM"))
         self.IncidentTypeText.setText(_translate("IncidentReportWindow", "Type:"))
         self.DescriptionText.setText(_translate("IncidentReportWindow", "Description:"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    IncidentReportWindow = QtWidgets.QMainWindow()
-    ui = Ui_IncidentReportWindow()
-    ui.setupUi(IncidentReportWindow)
-    IncidentReportWindow.show()
-    sys.exit(app.exec_())

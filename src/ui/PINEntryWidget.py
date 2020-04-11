@@ -11,7 +11,22 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_PINEntryWidget(object):
+
+    def __init__(self, ctx, callback):
+        self.ctx = ctx
+        self.callback = callback
+
+    def _cancel_click(self):
+        self.callback(False)
+        self.__window.close()
+
+    def _ok_click(self):
+        self.callback(True)
+        self.__window.close()
+
     def setupUi(self, PINEntryWidget):
+        self.__window = PINEntryWidget
+
         PINEntryWidget.setObjectName("PINEntryWidget")
         PINEntryWidget.resize(245, 87)
         self.PINPromptText = QtWidgets.QLabel(PINEntryWidget)
@@ -28,6 +43,10 @@ class Ui_PINEntryWidget(object):
         self.PINEntryInput.setText("")
         self.PINEntryInput.setObjectName("PINEntryInput")
 
+        # click listeners
+        self.OKButton.clicked.connect(self._ok_click)
+        self.CancelButton.clicked.connect(self._cancel_click)
+
         self.retranslateUi(PINEntryWidget)
         QtCore.QMetaObject.connectSlotsByName(PINEntryWidget)
 
@@ -38,12 +57,3 @@ class Ui_PINEntryWidget(object):
         self.OKButton.setText(_translate("PINEntryWidget", "OK"))
         self.CancelButton.setText(_translate("PINEntryWidget", "Cancel"))
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    PINEntryWidget = QtWidgets.QWidget()
-    ui = Ui_PINEntryWidget()
-    ui.setupUi(PINEntryWidget)
-    PINEntryWidget.show()
-    sys.exit(app.exec_())

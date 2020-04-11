@@ -11,6 +11,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_DroneWindow(object):
+
+    def __init__(self, ctx):
+        self.ctx = ctx
+
     def setupUi(self, DroneWindow):
         DroneWindow.setObjectName("DroneWindow")
         DroneWindow.resize(532, 328)
@@ -50,13 +54,3 @@ class Ui_DroneWindow(object):
         self.CloseButton.setText(_translate("DroneWindow", "Close"))
         self.RecallDroneButton.setText(_translate("DroneWindow", "Recall Drone"))
         self.CheckSectorOKButton.setText(_translate("DroneWindow", "Go"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    DroneWindow = QtWidgets.QMainWindow()
-    ui = Ui_DroneWindow()
-    ui.setupUi(DroneWindow)
-    DroneWindow.show()
-    sys.exit(app.exec_())

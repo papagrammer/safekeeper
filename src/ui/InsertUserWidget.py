@@ -11,6 +11,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_InsertUserWidget(object):
+
+    def __init__(self, ctx):
+        self.ctx = ctx
+
     def setupUi(self, InsertUserWidget):
         InsertUserWidget.setObjectName("InsertUserWidget")
         InsertUserWidget.resize(312, 228)
@@ -75,13 +79,3 @@ class Ui_InsertUserWidget(object):
         self.GuestCheckBox.setText(_translate("InsertUserWidget", "Guest"))
         self.IDText.setText(_translate("InsertUserWidget", "ID:"))
         self.ExpirationDateText.setText(_translate("InsertUserWidget", "Expires:"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    InsertUserWidget = QtWidgets.QMainWindow()
-    ui = Ui_InsertUserWidget()
-    ui.setupUi(InsertUserWidget)
-    InsertUserWidget.show()
-    sys.exit(app.exec_())
